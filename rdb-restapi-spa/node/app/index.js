@@ -17,12 +17,16 @@ connection.connect((error) => {
 
 const app = express()
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.send({
         message: 'Hello World',
         name: faker.name.fullName(),
         email: faker.internet.email()
     })
+})
+
+app.post('/', (req, res) => {
+    console.log(req.body)
 })
 
 app.listen(3000, () => {
