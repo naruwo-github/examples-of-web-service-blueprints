@@ -1,5 +1,6 @@
 const mysql = require('mysql')
 const express = require('express')
+const bodyParser = require('body-parser')
 const { faker } = require('@faker-js/faker')
 
 const connection = mysql.createConnection({
@@ -16,6 +17,7 @@ connection.connect((error) => {
 })
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
     res.send({
@@ -27,6 +29,9 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     console.log(req.body)
+    res.send({
+        message: 'Posted!'
+    })
 })
 
 app.listen(3000, () => {
